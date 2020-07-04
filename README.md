@@ -1,0 +1,2 @@
+# smt-app
+DevOps Assignment
