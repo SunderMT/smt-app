@@ -1,0 +1,20 @@
+pipeline {
+    agent any 
+    stages {
+        stage('Code pull') { 
+            steps {
+                // 
+            }
+        }
+        stage('Install') { 
+            steps {
+                // 
+            }
+        }
+        stage('Run Test') { 
+            steps {
+                // 
+            }
+        }
+    }
+}

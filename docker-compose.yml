@@ -1,0 +1,52 @@
+version: "3"
+  
+services:  
+  smt-app:
+    image: "node:10.19.0"
+    container_name: smt-app
+    working_dir: /home/node/app
+    volumes:
+      - ./smt-app:/home/node/app
+    ports:
+      - 4421:4422
+    command:
+      - /bin/bash
+      - -c
+      - npm start
+
+  smt-nginx: 
+    build: ./nginx
+    container_name: smt-nginx
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/config.js:/etc/nginx/config.js
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./builds:/usr/share/nginx
+    ports:
+      - 4444:80
+      
+  smt-jenkins: 
+    build: ./jenkins
+    container_name: smt-jenkins
+    volumes:
+      - ./builds:/var/www
+      - ./jenkins/jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 4423:8080
+
+  # smt-ngrok:
+  #   container_name: smt-ngrok
+  #   image: wernight/ngrok
+  #   command: ngrok http smt-jenkins:8080
+  #   ports:
+  #     - 4040:4040
+
+# volumes:
+#   mongodb-data:
+#     driver: local
+#   uploaded-images:
+#     driver: local
+  
+  
+
