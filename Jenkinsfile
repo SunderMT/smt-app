@@ -1,12 +1,12 @@
 pipeline {
+    environment {
+        registry = "sundermt/smt-app"
+        registryCredential = ‘dockerhub’
+        dockerImage = ''
+        VERSION = '0.4'
+    }
     agent any 
     stages {
-        environment {
-            registry = "sundermt/smt-app"
-            registryCredential = ‘dockerhub’
-            dockerImage = ''
-            VERSION = '0.4'
-        }
         // stage('Pull') { 
         //     steps {
         //         sh 'rm -rf smt-app && git clone -b master https://github.com/SunderMT/smt-app.git'
