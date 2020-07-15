@@ -1,19 +1,24 @@
 pipeline {
     agent any 
     stages {
-        stage('Code pull') { 
-            steps {
-                // 
-            }
-        }
         stage('Install') { 
             steps {
-                // 
+                sh 'cd smt-app && npm install'
             }
         }
         stage('Run Test') { 
             steps {
-                // 
+                sh 'npm test'
+            }
+        }
+        stage('Build') { 
+            steps {
+                sh 'ng build --prod'
+            }
+        }
+        stage('Deploy Build') { 
+            steps {
+                sh 'mv dist/smt-app ../builds/smt-app'
             }
         }
     }
