@@ -25,6 +25,11 @@ RUN apt-get install -y curl \
 
 RUN yes | npm install -g @angular/cli
 
+# install chrome
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+    yes | apt install ./google-chrome-stable_current_amd64.deb
+
+
 # USER jenkins
 
 EXPOSE 8080
