@@ -1,7 +1,7 @@
 pipeline {
     environment {
         registry = "sundermt/smt-app"
-        registryCredential = ‘dockerhub’
+        registryCredential = 'dockerhub'
         dockerImage = ''
         VERSION = '0.4'
     }
