@@ -3,4 +3,4 @@ browserslist
 e2e
 package-lock.json
 jenkins/jenkins_home
-builds
+builds/smt-app
