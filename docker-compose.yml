@@ -42,11 +42,7 @@ services:
   #   ports:
   #     - 4040:4040
 
-# volumes:
-#   mongodb-data:
-#     driver: local
-#   uploaded-images:
-#     driver: local
+
   
   
 
