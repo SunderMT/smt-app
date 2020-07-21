@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('pull') { 
             steps {
-                sh 'rm -rf smt-app && git clone https://github.com/SunderMT/smt-app.git -b master'
+                sh 'rm -rf smt-app && git clone https://github.com/SunderMT/smt-app.git'
             }
         }
         stage('Install') { 
