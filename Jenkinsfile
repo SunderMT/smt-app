@@ -7,6 +7,11 @@ pipeline {
     }
     agent any 
     stages {
+        stage('pull') { 
+            steps {
+                sh 'rm -rf smt-app && git clone https://github.com/SunderMT/smt-app.git -b master'
+            }
+        }
         stage('Install') { 
             steps {
                 sh 'cd smt-app/smt-app && npm install'
@@ -17,11 +22,11 @@ pipeline {
                 sh 'cd smt-app/smt-app && ng build --prod'
             }
         }
-        stage('Run Test') { 
-            steps {
-                sh 'cd smt-app/smt-app && npm test'
-            }
-        }
+        // stage('Run Test') { 
+        //     steps {
+        //         sh 'cd smt-app/smt-app && npm test'
+        //     }
+        // }
         // stage('Building image') {
         //     steps{
         //         script {
