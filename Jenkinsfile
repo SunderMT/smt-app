@@ -22,32 +22,32 @@ pipeline {
                 sh 'cd smt-app/smt-app && ng build --prod'
             }
         }
-        // stage('Run Test') { 
-        //     steps {
-        //         sh 'cd smt-app/smt-app && npm test'
-        //     }
-        // }
-        // stage('Building image') {
-        //     steps{
-        //         script {
-        //         dockerImage = docker.build registry + ":$VERSION"
-        //         }
-        //     }
-        // }
-        // stage('Deploy Image') {
-        //     steps{
-        //             script {
-        //             docker.withRegistry( '', registryCredential ) {
-        //                 dockerImage.push()
-        //             }
-        //         }
-        //     }
-        // }
-        // stage('Remove Unused docker image') {
-        //     steps{
-        //         sh "docker rmi $registry:$VERSION"
-        //     }
-        // }
+        stage('Run Test') { 
+            steps {
+                sh 'cd smt-app/smt-app && npm test'
+            }
+        }
+        stage('Building image') {
+            steps{
+                script {
+                dockerImage = docker.build registry + ":$VERSION"
+                }
+            }
+        }
+        stage('Deploy Image') {
+            steps{
+                    script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+        stage('Remove Unused docker image') {
+            steps{
+                sh "docker rmi $registry:$VERSION"
+            }
+        }
         stage('Deploy Build') { 
             steps {
                 sh 'cd smt-app/smt-app && rm -rf /var/www/smt-app && mv dist/smt-app /var/www'
